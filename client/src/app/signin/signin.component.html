@@ -1,0 +1,25 @@
+<div class="form-wrapper">
+  <h1>Sign in</h1>
+  <form [formGroup]="signInForm"
+        class="form"
+        (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput matNativeControl type="email" formControlName="email">
+      <mat-error *ngIf="signInForm.controls.email.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="signInForm.controls.email.hasError('email')">Email is invalid</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matNativeControl matInput type="password" formControlName="password">
+      <mat-error *ngIf="signInForm.controls.password.hasError('required')">Password is required</mat-error>
+      <mat-error *ngIf="signInForm.controls.password.hasError('minlength')">Password must be at least 8 characters</mat-error>
+      <mat-error *ngIf="signInForm.controls.password.hasError('maxlength')">Password must be at most 20 characters</mat-error>
+      <mat-error *ngIf="signInForm.controls.password.hasError('pattern')">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">Login</button>
+  </form>
+</div>

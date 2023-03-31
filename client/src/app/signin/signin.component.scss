@@ -1,0 +1,19 @@
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+mat-label {
+  text-decoration: none;
+}
+
+mat-error {
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 14rem
+}
+
