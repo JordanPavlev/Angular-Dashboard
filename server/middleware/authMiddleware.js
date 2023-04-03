@@ -1,11 +1,21 @@
-const authenticateToken = (req, res, next) => {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    const tokenExpirationTime = req.app.locals.tokens[token];
-    if (!token || !tokenExpirationTime || Date.now() > tokenExpirationTime) {
-      return res.status(401).json({ error: 'Unauthorized' });
-    }
-    next();
-  };
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
   
-  module.exports = { authenticateToken };
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const token = authHeader.substring(7);
+  const tokenExpirationTime = req.app.locals.tokens[token];
+
+  if (!tokenExpirationTime || Date.now() > tokenExpirationTime) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  req.locals = { token };
+  next();
+}
+
+module.exports = {
+  authMiddleware
+};

@@ -1,5 +1,4 @@
-{
-    "products": [
+[
         {
             "id": 1, "name": "Product 1", "description": "This is product 1"
         },
@@ -29,6 +28,14 @@
         },
         {
             "id": 10, "name": "Product 10", "description": "This is product 10"
+        },
+        {
+            "id": 11, "name": "Product 11", "description": "This is product 11"
+        },
+        {
+            "id": 12, "name": "Product 12", "description": "This is product 12"
+        },
+        {
+            "id": 13, "name": "Product 13", "description": "This is product 13"
         }
     ]
-}

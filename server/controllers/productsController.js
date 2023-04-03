@@ -4,10 +4,13 @@ const dataPath = path.join(__dirname, '..', 'data', 'products.json');
 
 const getProducts = (req, res, next) => {
   const { page = 1, page_size = 20, sort_attr = 'id', sort_dir = 'desc' } = req.query;
+
+
+
   const startIndex = (page - 1) * page_size;
   const endIndex = startIndex + page_size;
   fs.readFile(dataPath, (err, data) => {
-    if (err) return next(err);
+    if (err) return next(err); 
     const products = JSON.parse(data);
     const sortedProducts = products.sort((a, b) => {
       const sortValueA = a[sort_attr];

@@ -4,6 +4,6 @@ const { authenticateToken } = require('../controllers/signinController');
 
 const { getProducts } = require('../controllers/productsController');
 
-router.get('/products', (authenticateToken, getProducts));
+router.get('/', (authenticateToken, getProducts));
 
 module.exports = router;
