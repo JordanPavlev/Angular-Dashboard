@@ -1,19 +1,58 @@
+.mat-mdc-form-field-error-wrapper {
+  position: relative;
+}
 .form-wrapper {
+  display: grid;
+	place-items: center;
+  margin-top: 4rem;
+
+  h1 {
+    font-size: 70px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #553c9a, #b393d3);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+form {
+  background-image: linear-gradient(to left, #9d94bf, #bca7d0);
+  -webkit-box-shadow: 3px 0px 41px 8px rgba(103,84,156,0.75);
+-moz-box-shadow: 3px 0px 41px 8px rgba(103,84,156,0.75);
+box-shadow: 3px 0px 41px 8px rgba(103,84,156,0.75);
+  border-radius: 8px;
+  padding: 3rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  width: 14rem;
+  gap: 1.4rem;
+
+
+  mat-form-field {
+
+    
+    mat-error {
+
+    }
+  
+    #mat-mdc-error-1, #mat-mdc-error-0 {
+      display: block !important;
+    }
+
+    #mat-mdc-error-3 {
+    }
+
+    
+  }
+
+  button {
+    margin-top: 2rem;
+  }
+
 }
 
 mat-label {
   text-decoration: none;
 }
 
-mat-error {
-  margin: 20px;
 }
-
-form {
-  display: flex;
-  flex-direction: column;
-  width: 14rem
-}
-

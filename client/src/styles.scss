@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+padding: 0px;
+margin: 0px;
+background-image: url(assets/login-background.jpg);
+
+.mat-mdc-form-field-error-wrapper {
+    position: relative;
+    padding: 0px;
+    font-size: 16px;
+}
+
+.mat-mdc-form-field-bottom-align::before {
+    content: none;
+}
+}

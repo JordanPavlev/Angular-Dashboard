@@ -1,13 +1,15 @@
 const express = require('express');
 const app = express();
+const cors = require("cors");
 app.use(express.json());
-
+app.use(cors());
 const PORT = process.env.PORT || 3000;
 const tokens = {};
 
 
 // local token
 app.use((req, res, next) => {
+
   req.app.locals.tokens = tokens;
   next();
 });

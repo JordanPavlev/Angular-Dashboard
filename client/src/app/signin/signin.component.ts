@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
-import {BehaviorSubject, Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {map, tap} from "rxjs/operators";
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { first } from 'rxjs/operators';
+
+import { authService } from '@app/_services/authService';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,61 +11,58 @@ import {map, tap} from "rxjs/operators";
   styleUrls: ['./signin.component.scss']
 })
 export class SignInComponent  {
-
-
-  signInForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])')])
-  });
-
-
+  signInForm!: FormGroup
+  loading = false;
+  submitted = false;
+  error = '';
+  loginText : string = "Sign in"
 
   constructor(
-    private authService: AuthService,
-    private http: HttpClient
-    ) {}
-
-  ngOnInit(): void {
-    console.log(typeof(this.signInForm));
+      private formBuilder: FormBuilder,
+      private route: ActivatedRoute,
+      private router: Router,
+      private authService: authService
+  ) {
+      // redirect to home if already logged in
+      // if (this.authService.userValue) {
+      //     this.router.navigate(['/']);
+      // }
   }
 
-  private baseUrl = 'http://192.168.56.107:3000';
-  private tokenSubject = new BehaviorSubject<string>("");
-
-
-  signIn(email: string, password: string): Observable<string> {
-    const url = `${this.baseUrl}/signin`;
-    const body = { email, password };
-    return this.http.post<{ token: string }>(url, body).pipe(
-      tap(res => this.tokenSubject.next(res.token)),
-      map(res => res.token)
-    );
+  ngOnInit() {
+      this.signInForm = this.formBuilder.group({
+          email: ['', Validators.required],
+          password: ['', Validators.required]
+      });
+      console.log("asdasdsad");
+      
   }
 
-  getToken(): string {
-    return this.tokenSubject.value;
-  }
+  // convenience getter for easy access to form fields
+  get form() { return this.signInForm.controls; }
 
-  isAuthenticated(): boolean {
-    return !!this.getToken();
-  }
+  onSubmit() {
+      this.submitted = true;
 
-  signOut(): void {
-    this.tokenSubject.next("");
-  }
+      // stop here if form is invalid
+      if (this.signInForm.invalid) {
+          return;
+      }
 
-  onSubmit(): void {
-    if (this.signInForm.valid) {
-      const email = this.signInForm.value.email;
-      const password = this.signInForm.value.password;
-      this.signIn(email, password).subscribe(
-        (token: string) => {
-          // save to localstorage
-        },
-        (error: string) => {
-          // error display
-        }
-      );
-    }
+      this.error = '';
+      this.loading = true;
+      this.authService.login(this.form.email.value, this.form.password.value)
+          .pipe(first())
+          .subscribe({
+              next: () => {
+                  // get return url from route parameters or default to '/'
+                  // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                  this.router.navigate(["dashboard"]);
+              },
+              error: error => {
+                  this.error = error;
+                  this.loading = false;
+              }
+          });
   }
 }

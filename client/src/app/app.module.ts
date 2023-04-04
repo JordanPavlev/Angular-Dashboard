@@ -6,16 +6,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './signin/signin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, RouterOutlet} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app.routing.module";
+import { SigninModule } from './signin/signin.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +26,9 @@ import {AppRoutingModule} from "./app.routing.module";
     BrowserAnimationsModule,
     MatInputModule,
     RouterOutlet,
+    RouterModule,
+    SigninModule,
+    DashboardModule
 
   ],
   providers: [],
