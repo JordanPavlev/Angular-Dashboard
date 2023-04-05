@@ -6,7 +6,7 @@ const login = async (req, res) => {
     const token = uuid();
     const expirationTime = 5 * 60 * 300000; // 5 minutes in milliseconds
     req.app.locals.tokens = req.app.locals.tokens || {};
-    req.app.locals.tokens[token] = Date.now() + expirationTime;
+    req.app.locals.tokens[token] = Date.now() + expirationTime; 
     return res.status(200).json({ token });
   }
   else {

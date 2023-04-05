@@ -1,5 +1,4 @@
-{
-    "data": [
+ [
         {
             "id": 1,
             "name": "Product 1",
@@ -99,6 +98,110 @@
             "id": 20,
             "name": "Product 20",
             "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 20,
+            "name": "Product 20",
+            "description": "This is product 20"
+        },
+        {
+            "id": 112315,
+            "name": "Product 155",
+            "description": "This is product 1555"
         }
     ]
-}

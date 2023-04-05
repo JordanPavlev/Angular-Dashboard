@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from '@app/dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator'; // import MatPaginatorModule
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'; // import MatPaginatorModule
 import { productsService } from '@app/_services/productsService';
 
 
@@ -15,7 +15,7 @@ import { productsService } from '@app/_services/productsService';
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
-    
+
     RouterModule.forChild([{path: "dashboard", component: DashboardComponent}])
   ],
   providers: [

@@ -21,7 +21,7 @@ const getProducts = (req, res, next) => {
     // parse products data from JSON
     let products = [];
     try {
-      products = JSON.parse(data).data;
+      products = JSON.parse(data);
     } catch (err) {
       console.error(data);
       return res.status(500).json({ error: 'Failed to parse products data' });
@@ -37,10 +37,10 @@ const getProducts = (req, res, next) => {
         return b[sortAttr] - a[sortAttr];
       }
     });
-    const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
+     data = sortedProducts.slice(startIndex, endIndex);
 
     // return paginated products in response
-    res.json( paginatedProducts );
+    res.json( {data} );
   });
 };
 

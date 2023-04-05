@@ -12,8 +12,8 @@ import { authService } from '@app/_services/authService';
 })
 export class SignInComponent  {
     signInForm: FormGroup = new FormGroup({
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$')])
+        email: new FormControl('admin@sample.com', [Validators.required, Validators.email]),
+        password: new FormControl('#admIN99', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$')])
       });
   loading = false;
   submitted = false;
@@ -38,8 +38,8 @@ export class SignInComponent  {
     //       password: ['', Validators.required]
     //   });
       console.log("asdasdsad");
-      
-      
+
+
   }
 
   // convenience getter for easy access to form fields

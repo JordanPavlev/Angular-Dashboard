@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { toArray } from 'rxjs';
+import { authService } from '@app/_services/authService';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,33 +14,33 @@ import { toArray } from 'rxjs';
 })
 export class DashboardComponent implements OnInit {
   authenticated = false;
-  products: MatTableDataSource<Product> = new MatTableDataSource<Product>(); // updated line
+  products: MatTableDataSource<Product[]> = new MatTableDataSource<Product[]>(); // updated line
   totalProducts = 0;
   currentPage = 1;
-  pageSize = 20;
-  test: Product[] = []
+  pageSize = 4;
 
-  constructor(private router: Router, private productService: productsService) {}
+
+
+  constructor(
+    private router: Router,
+     private productService: productsService,
+     private authService: authService
+    ) {}
 
   ngOnInit(): void {
-    this.authenticated = this.isCurrentUserAuthenticated();
-
-    if (this.authenticated) { 
-      this.getProducts();
-    } 
+    this.getProducts()
   }
 
   private isCurrentUserAuthenticated(): boolean {
-    // Implement your logic here to check if the user is authenticated
     return true; // Just returning true for demonstration purposes
   }
 
   private getProducts(): void {
     this.productService.getProducts().subscribe((response) => {
-      console.log(response[1].description);
-      
 
-      this.products = new MatTableDataSource<Product>(response);
+      const responseArray = Object.values(response)[0]
+
+      this.products = new MatTableDataSource<Product[]>(responseArray);
       // this.totalProducts = response.length;
     });
   }
@@ -47,11 +48,13 @@ export class DashboardComponent implements OnInit {
   onPageChange(event: any): void {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
+    console.log('da stava');
+
   }
 
-  signOut(): void {
-    // Implement your logic here to sign out the user
-    this.authenticated = false;
-    this.router.navigate(['/signin']);
+  logOut() :void {
+    this.authService.logout()
   }
+
+
 }
