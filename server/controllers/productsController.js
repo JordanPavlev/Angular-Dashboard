@@ -3,24 +3,44 @@ const path = require('path');
 const dataPath = path.join(__dirname, '..', 'data', 'products.json');
 
 const getProducts = (req, res, next) => {
-  const { page = 1, page_size = 20, sort_attr = 'id', sort_dir = 'desc' } = req.query;
+  const page = Number(req.query.page) || 1;
+  const pageSize = Number(req.query.page_size) || 20;
+  const sortAttr = ['id', 'name', 'description'].includes(req.query.sort_attr)
+    ? req.query.sort_attr
+    : 'id';
+  const sortDir = ['asc', 'desc'].includes(req.query.sort_dir)
+    ? req.query.sort_dir
+    : 'desc';
 
+  // read products data from JSON file
+  fs.readFile('data/products.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).json({ error: 'Failed to read products data' });
+    }
 
+    // parse products data from JSON
+    let products = [];
+    try {
+      products = JSON.parse(data).data;
+    } catch (err) {
+      console.error(data);
+      return res.status(500).json({ error: 'Failed to parse products data' });
+    }
 
-  const startIndex = (page - 1) * page_size;
-  const endIndex = startIndex + page_size;
-  fs.readFile(dataPath, (err, data) => {
-    if (err) return next(err); 
-    const products = JSON.parse(data);
+    // paginate and sort products
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
     const sortedProducts = products.sort((a, b) => {
-      const sortValueA = a[sort_attr];
-      const sortValueB = b[sort_attr];
-      if (sortValueA < sortValueB) return sort_dir === 'asc' ? -1 : 1;
-      if (sortValueA > sortValueB) return sort_dir === 'asc' ? 1 : -1;
-      return 0;
+      if (sortDir === 'asc') {
+        return a[sortAttr] - b[sortAttr];
+      } else {
+        return b[sortAttr] - a[sortAttr];
+      }
     });
     const paginatedProducts = sortedProducts.slice(startIndex, endIndex);
-    return res.status(200).json({ data: paginatedProducts });
+
+    // return paginated products in response
+    res.json( paginatedProducts );
   });
 };
 

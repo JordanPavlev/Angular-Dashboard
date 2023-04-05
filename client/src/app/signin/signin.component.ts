@@ -11,7 +11,10 @@ import { authService } from '@app/_services/authService';
   styleUrls: ['./signin.component.scss']
 })
 export class SignInComponent  {
-  signInForm!: FormGroup
+    signInForm: FormGroup = new FormGroup({
+        email: new FormControl('', [Validators.required, Validators.email]),
+        password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(20), Validators.pattern('(?=[A-Za-z0-9@#$%^&+!=]+$)^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+!=])(?=.{8,}).*$')])
+      });
   loading = false;
   submitted = false;
   error = '';
@@ -30,11 +33,12 @@ export class SignInComponent  {
   }
 
   ngOnInit() {
-      this.signInForm = this.formBuilder.group({
-          email: ['', Validators.required],
-          password: ['', Validators.required]
-      });
+    //   this.signInForm = this.formBuilder.group({
+    //       email: ['', Validators.required],
+    //       password: ['', Validators.required]
+    //   });
       console.log("asdasdsad");
+      
       
   }
 

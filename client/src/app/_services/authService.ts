@@ -18,6 +18,7 @@ export class authService {
     ) {
         this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
         this.user = this.userSubject.asObservable();
+        
     }
 
     public get userValue() {
@@ -26,12 +27,13 @@ export class authService {
 
     login(email: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/signin`, { email, password })
-            .pipe(map(user => {
+            .pipe(map(userToken => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
-                user.authdata = window.btoa(email + ':' + password);
-                localStorage.setItem('user', "Bearer " + JSON.stringify(user));
-                this.userSubject.next(user);
-                return user;
+                userToken.authdata = window.btoa(email + ':' + password);
+                
+                localStorage.setItem('user', JSON.stringify(userToken.token));
+                this.userSubject.next(userToken);
+                return userToken;
             }));
     }
 

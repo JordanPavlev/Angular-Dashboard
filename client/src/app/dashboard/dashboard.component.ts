@@ -4,6 +4,7 @@ import { Product } from '@app/_models/product';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { toArray } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,19 +13,20 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   authenticated = false;
-  products: MatTableDataSource<Product> = new MatTableDataSource<Product>([]); // updated line
+  products: MatTableDataSource<Product> = new MatTableDataSource<Product>(); // updated line
   totalProducts = 0;
   currentPage = 1;
   pageSize = 20;
+  test: Product[] = []
 
   constructor(private router: Router, private productService: productsService) {}
 
   ngOnInit(): void {
     this.authenticated = this.isCurrentUserAuthenticated();
 
-    if (this.authenticated) {
+    if (this.authenticated) { 
       this.getProducts();
-    }
+    } 
   }
 
   private isCurrentUserAuthenticated(): boolean {
@@ -34,8 +36,11 @@ export class DashboardComponent implements OnInit {
 
   private getProducts(): void {
     this.productService.getProducts().subscribe((response) => {
+      console.log(response[1].description);
+      
+
       this.products = new MatTableDataSource<Product>(response);
-      this.totalProducts = response.length;
+      // this.totalProducts = response.length;
     });
   }
 

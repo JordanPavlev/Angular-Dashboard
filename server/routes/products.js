@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { authenticateToken } = require('../controllers/signinController');
+const { login } = require('../controllers/signinController');
 
 const { getProducts } = require('../controllers/productsController');
 
-router.get('/', (authenticateToken, getProducts));
+router.get('/', ( getProducts));
 
 module.exports = router;
