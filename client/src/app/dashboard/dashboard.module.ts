@@ -7,17 +7,20 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'; 
 import { productsService } from '@app/_services/productsService';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
   declarations: [
     DashboardComponent
   ],
+  exports: [MatSidenavModule],
   imports: [
     CommonModule,
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
+    MatSidenavModule,
     MatIconModule,
     RouterModule.forChild([{path: "", component: DashboardComponent}])
   ],

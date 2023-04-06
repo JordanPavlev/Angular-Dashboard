@@ -2,8 +2,39 @@
     width: 40%;
     height: 40%;
     margin: auto;
+
+    @media only screen and (max-width: 600px) {
+        width: unset;
+        overflow: hidden;
+        padding: 12px;
+    }
 }
 
 .example-button-container {
     position: relative;
+}
+
+.example-sidenav-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.example-container {
+   height: 100%;
+}
+
+.example-sidenav {
+    background-color: transparent;
+    opacity: 0.6;
+
+   
+}
+
+.buttons-container {
+   align-items: center;
+   gap: 12px;
+    display: flex;
+    flex-direction: column;
 }

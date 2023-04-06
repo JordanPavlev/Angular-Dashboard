@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import { SignInRoutingModule } from './signin.routing.module';
 import { RouterModule } from '@angular/router';
 
 
@@ -20,8 +19,7 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     MatCardModule,
     MatButtonToggleModule,
-    SignInRoutingModule,
-    RouterModule
+    RouterModule.forChild([{path: "", component: SignInComponent}])
   ],
   providers: [authService]
 })

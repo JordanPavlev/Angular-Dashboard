@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   totalProducts = 0;
   currentPage = 1;
   pageSize = 20;
+  showFiller = false;
   responseArray = []
   dataSource: Product[] = []
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
