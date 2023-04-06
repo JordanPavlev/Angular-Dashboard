@@ -26,6 +26,8 @@ export class authService {
     }
 
     login(email: string, password: string) {
+        console.log(this.userSubject.value);
+        
         return this.http.post<any>(`${environment.apiUrl}/signin`, { email, password })
             .pipe(map(userToken => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes

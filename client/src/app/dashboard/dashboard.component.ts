@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { toArray } from 'rxjs';
 import { authService } from '@app/_services/authService';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,10 @@ export class DashboardComponent implements OnInit {
   products: MatTableDataSource<Product[]> = new MatTableDataSource<Product[]>(); // updated line
   totalProducts = 0;
   currentPage = 1;
-  pageSize = 4;
-
+  pageSize = 20;
+  responseArray = []
+  dataSource: Product[] = []
+  @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
 
 
   constructor(
@@ -29,7 +32,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts()
+
+             
   }
+
+  ngAfterViewInit() {
+    this.paginator!.page.subscribe(() => {
+       this.dataSource = this.getPageData(this.paginator!.pageIndex);
+    });
+ }
 
   private isCurrentUserAuthenticated(): boolean {
     return true; // Just returning true for demonstration purposes
@@ -38,12 +49,17 @@ export class DashboardComponent implements OnInit {
   private getProducts(): void {
     this.productService.getProducts().subscribe((response) => {
 
-      const responseArray = Object.values(response)[0]
+     this.responseArray = Object.values(response)[0]
 
-      this.products = new MatTableDataSource<Product[]>(responseArray);
+      this.products = new MatTableDataSource<Product[]>(this.responseArray);
       // this.totalProducts = response.length;
     });
   }
+
+  getPageData(pageIndex: number): Product[] {
+    const startIndex = pageIndex * this.pageSize;
+    return this.responseArray.slice(startIndex, startIndex + this.pageSize);
+ }
 
   onPageChange(event: any): void {
     this.currentPage = event.pageIndex + 1;

@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { SignInComponent } from './signin/signin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, RouterOutlet} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app.routing.module";
 import { SigninModule } from './signin/signin.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { DashboardModule } from '@app/dashboard/dashboard.module';
+import { BasicAuthInterceptor } from '@app/_helpers/basic-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule
 
   ],
-  providers: [],
+  providers: [
+    // { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

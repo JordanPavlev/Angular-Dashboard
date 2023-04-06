@@ -9,19 +9,23 @@ import { authService } from '@app/_services/authService';
 export class BasicAuthInterceptor implements HttpInterceptor {
     constructor(private authenticationService: authService) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // add header with basic auth credentials if user is logged in and request is to the api url
-        const user = this.authenticationService.userValue;
-        const isLoggedIn = user?.authdata;
-        const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
-            request = request.clone({
-                setHeaders: { 
-                    Authorization: `Bearer ${user.authdata}`
-                }
-            });
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const authToken = localStorage.getItem('user'); // or however you store your auth token
+        console.log(authToken);
+        const tokenValue  = authToken!.replace(/"/g, '');
+        console.log(this.authenticationService.userValue);
+        
+        
+        if (authToken) {
+          const authReq = req.clone({
+            headers: req.headers.set('Authorization', `Bearer ${this.authenticationService.userValue}`)
+            
+          });
+          return next.handle(authReq);
+        } else {
+          return next.handle(req);
         }
-
-        return next.handle(request);
-    }
+      }
+    
+    
 }

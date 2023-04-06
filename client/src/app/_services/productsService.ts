@@ -8,15 +8,15 @@ import { environment } from '@environments/environments';
   providedIn: 'root'
 })
 export class productsService {
-    private readonly apiUrl = `${environment.apiUrl}/products?page=1&page_size=21&sort_attr=id&sort_dir=desc`;
+    private readonly apiUrl = `${environment.apiUrl}/products?page=1&page_size=60&sort_attr=id&sort_dir=desc`;
 
   constructor(private http: HttpClient) { }
 
    token = localStorage.getItem('user');
 
   getProducts(): Observable<Product> {
-    this.token = this.token!.replace(/"/g, '');
+    const tokenValue =  this.token!.replace(/"/g, '');
 
-    return this.http.get<Product>(this.apiUrl,{headers: {Authorization: `Bearer ${this.token}`}} );
+    return this.http.get<Product>(this.apiUrl,{headers: {Authorization: `Bearer ${tokenValue}`}} );
   }
 }
