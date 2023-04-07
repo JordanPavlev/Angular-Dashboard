@@ -19,6 +19,7 @@ export class SignInComponent  {
   submitted = false;
   error = '';
   loginText : string = "Sign in"
+  wrongCredentials: string = ""
 
   constructor(
       private formBuilder: FormBuilder,
@@ -33,11 +34,11 @@ export class SignInComponent  {
   }
 
   ngOnInit() {
-    //   this.signInForm = this.formBuilder.group({
-    //       email: ['', Validators.required],
-    //       password: ['', Validators.required]
-    //   });
-    //   console.log("asdasdsad");
+      // this.signInForm = this.formBuilder.group({
+      //     email: ['', Validators.required],
+      //     password: ['', Validators.required]
+      // });
+      // console.log("asdasdsad");
 
 
   }
@@ -66,6 +67,7 @@ export class SignInComponent  {
               error: error => {
                   this.error = error;
                   this.loading = false;
+                  this.wrongCredentials = "Wrong email or password."
               }
           });
   }

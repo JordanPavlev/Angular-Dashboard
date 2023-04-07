@@ -19,7 +19,7 @@
       <mat-error *ngIf="signInForm.controls.password.hasError('maxlength')">Password must be at most 20 characters!</mat-error>
       <mat-error *ngIf="signInForm.controls.password.hasError('pattern')">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character!</mat-error>
     </mat-form-field>
-
+    <span>{{wrongCredentials}}</span>
     <button mat-raised-button color="primary">Login</button>
   </form>
 </div>
