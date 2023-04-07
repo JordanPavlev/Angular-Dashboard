@@ -5,13 +5,17 @@ import { authService } from '@app/_services/authService';
 
 @Injectable({ providedIn: 'root' })
 export class authGuard implements CanActivate {
+
+
     constructor(
         private router: Router,
         private authService: authService
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const user = this.authService.userValue;
+
+        const user = localStorage.getItem('user');
+
         if (user) {
             return true;
         }

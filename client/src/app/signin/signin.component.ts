@@ -27,9 +27,9 @@ export class SignInComponent  {
       private authService: authService
   ) {
       // redirect to home if already logged in
-      // if (this.authService.userValue) {
-      //     this.router.navigate(['/']);
-      // }
+      if (this.authService.userValue) {
+          this.router.navigate(['/dashboard']);
+      }
   }
 
   ngOnInit() {

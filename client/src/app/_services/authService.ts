@@ -11,7 +11,6 @@ import { User } from '@app/_models/user';
 export class authService {
     private userSubject: BehaviorSubject<User | null>;
     public user: Observable<User | null>;
-
     constructor(
         private router: Router,
         private http: HttpClient
@@ -25,9 +24,16 @@ export class authService {
         return this.userSubject.value;
     }
 
+    gettoken (){
+      this.user.subscribe(asd => {
+        const token = asd?.authdata
+      })
+    }
+
     login(email: string, password: string) {
-        console.log(this.userSubject.value);
-        
+        console.log(this.user);
+        this.gettoken()
+
         return this.http.post<any>(`${environment.apiUrl}/signin`, { email, password })
             .pipe(map(userToken => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
