@@ -1,18 +1,13 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    
+
     <div class="buttons-container">
 
-      <p *ngIf="showFiller">Navbar</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
       <button (click)="logOut()" mat-raised-button>
+        <mat-icon>home</mat-icon>
         Sign out
       </button>
-      <button mat-mini-fab color="warn" aria-label="Example icon button with a home icon">
-        <mat-icon>home</mat-icon>
-      </button>
+      
 
     </div>
 

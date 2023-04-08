@@ -1,8 +1,13 @@
 <div class="form-wrapper">
-  <h1>{{loginText | uppercase}}</h1>
+  <div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
   <form [formGroup]="signInForm"
         class="form"
         (ngSubmit)="onSubmit()">
+  <h1>{{loginText | uppercase}}</h1>
+
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input matInput matNativeControl type="email" formControlName="email">

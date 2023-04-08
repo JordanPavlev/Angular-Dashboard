@@ -8,6 +8,7 @@
         overflow: hidden;
         padding: 12px;
     }
+
 }
 
 .example-button-container {
@@ -36,6 +37,7 @@
 .buttons-container {
    align-items: center;
    gap: 12px;
+   margin: 18px;
     display: flex;
     flex-direction: column;
 }
