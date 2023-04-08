@@ -16,12 +16,6 @@ export class productsService {
 
   getProducts(): Observable<Product> {
     const tokenValue =   this.token!.replace(/"/g, '');
-    const tokenValuee = this.token?.substring(7, this.token?.length)
-    console.log(tokenValue);
-    
-    console.log(tokenValuee);
-    
-
     return this.http.get<Product>(this.apiUrl,{headers: {Authorization: `Bearer ${tokenValue}`}} );
   }
 }

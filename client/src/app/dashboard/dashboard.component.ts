@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { toArray } from 'rxjs';
 import { authService } from '@app/_services/authService';
 import { MatIconButton } from '@angular/material/button';
-
+import {Title} from "@angular/platform-browser";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -28,13 +28,15 @@ export class DashboardComponent implements OnInit {
   constructor(
     private router: Router,
      private productService: productsService,
-     private authService: authService
-    ) {}
+     private authService: authService,
+     private titleService:Title
+    ) {
+    this.titleService.setTitle("Dashboard");
+    }
 
   ngOnInit(): void {
     this.getProducts()
 
-             
   }
 
   ngAfterViewInit() {
@@ -65,8 +67,6 @@ export class DashboardComponent implements OnInit {
   onPageChange(event: any): void {
     this.currentPage = event.pageIndex + 1;
     this.pageSize = event.pageSize;
-    console.log('da stava');
-
   }
 
   logOut() :void {

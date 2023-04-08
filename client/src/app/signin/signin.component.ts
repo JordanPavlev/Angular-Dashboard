@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import {Title} from "@angular/platform-browser";
 import { authService } from '@app/_services/authService';
 
 @Component({
@@ -24,6 +24,7 @@ export class SignInComponent  {
   constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
+      private titleService:Title,
       private router: Router,
       private authService: authService
   ) {
@@ -39,7 +40,7 @@ export class SignInComponent  {
       //     password: ['', Validators.required]
       // });
       // console.log("asdasdsad");
-
+      this.titleService.setTitle("Sign in");
 
   }
 

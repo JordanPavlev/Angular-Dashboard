@@ -31,7 +31,6 @@ export class authService {
     }
 
     login(email: string, password: string) {
-        console.log(this.user);
         this.gettoken()
 
         return this.http.post<any>(`${environment.apiUrl}/signin`, { email, password })
