@@ -46,17 +46,23 @@ export class DashboardComponent implements OnInit {
  }
 
   private isCurrentUserAuthenticated(): boolean {
-    return true; // Just returning true for demonstration purposes
+    if(this.authService.userValue) {
+      return true
+    };
+
+    return false
   }
 
   private getProducts(): void {
     this.productService.getProducts().subscribe((response) => {
 
-     this.responseArray = Object.values(response)[0]
+    this.responseArray = Object.values(response)[0]
 
-      this.products = new MatTableDataSource<Product[]>(this.responseArray);
+    this.products = new MatTableDataSource<Product[]>(this.responseArray);
       // this.totalProducts = response.length;
-    });
+    }
+
+    );
   }
 
   getPageData(pageIndex: number): Product[] {

@@ -14,18 +14,18 @@ export class BasicAuthInterceptor implements HttpInterceptor {
         console.log(authToken);
         const tokenValue  = authToken!.replace(/"/g, '');
         console.log(this.authenticationService.userValue);
-        
-        
+
+
         if (authToken) {
-          const authReq = req.clone({
+          const authReq = req.clone({  
             headers: req.headers.set('Authorization', `Bearer ${this.authenticationService.userValue}`)
-            
+
           });
           return next.handle(authReq);
         } else {
           return next.handle(req);
         }
       }
-    
-    
+
+
 }
