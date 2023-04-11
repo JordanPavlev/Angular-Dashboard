@@ -14,7 +14,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// middlewares
+// middlewares 
 const {errorHandler}  = require('./middleware/errorHandler');
 const {authMiddleware} = require('./middleware/authMiddleware');
 
