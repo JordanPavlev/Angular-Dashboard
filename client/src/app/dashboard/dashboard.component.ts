@@ -74,9 +74,11 @@ export class DashboardComponent implements OnInit {
 
       this.responseArray = Object.values(response)[0]
 
-      this.products = new MatTableDataSource<Product[]>(this.responseArray);
+    this.products = new MatTableDataSource<Product[]>(this.responseArray);
       // this.totalProducts = response.length;
-    });
+    }
+
+    );
   }
 
   getPageData(pageIndex: number): Product[] {

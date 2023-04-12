@@ -25,8 +25,8 @@ export class authService {
     }
 
     gettoken (){
-      this.user.subscribe(asd => {
-        const token = asd?.authdata
+      this.user.subscribe(response => {
+        const token = response?.authdata
       })
     }
 
