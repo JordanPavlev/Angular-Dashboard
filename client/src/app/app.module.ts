@@ -13,6 +13,7 @@ import {AppRoutingModule} from "./app.routing.module";
 import { SigninModule } from './signin/signin.module';
 import { DashboardModule } from '@app/dashboard/dashboard.module';
 import { BasicAuthInterceptor } from '@app/_helpers/basic-auth.interceptor';
+import { ErrorInterceptor } from '@app/_helpers/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BasicAuthInterceptor } from '@app/_helpers/basic-auth.interceptor';
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

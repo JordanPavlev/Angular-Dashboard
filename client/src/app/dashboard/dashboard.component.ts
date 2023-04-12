@@ -35,15 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isCurrentUserAuthenticated()) {
-      console.log("authenticated");
-
-      this.getProducts()
-    }
-    else {
-      console.log("not authenticated");
-      this.logOut()
-    }
+    this.getProducts()
 
   }
 
@@ -53,21 +45,9 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  private isCurrentUserAuthenticated(): boolean {
-    const a = this.productService.getProducts().subscribe((response) => {
-      if (response) {
-        console.log(response);
-        return true
-      }
-      else return false
-
-    })
-
-   if (a) {
-    return true
-   }
-   else return false
-    }
+  // private isCurrentUserAuthenticated(): boolean {
+  //  return true;
+  //   }
 
   private getProducts(): void {
     this.productService.getProducts()?.subscribe((response) => {
